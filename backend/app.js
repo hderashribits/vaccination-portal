@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import studentRoutes from './routes/studentRoutes.js';
+import driveRoutes from './routes/driveRoutes.js';
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/students', studentRoutes);
-app.get('/', (req, res) => res.send('API is running...'));
+app.use('/drives', driveRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
