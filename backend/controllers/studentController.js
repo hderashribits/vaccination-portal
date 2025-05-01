@@ -7,6 +7,6 @@ export const createStudent = async (req, res) => {
     res.status(201).json(student);
   } catch (err) {
     console.error('Error creating student:', err.message);
-    res.status(500).json({ error: 'Server error ' + err.message });
+    res.status(400).json({ error: 'Server error ' + err.message });
   }
 };
