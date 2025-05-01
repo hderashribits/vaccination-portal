@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import studentRoutes from './routes/studentRoutes.js';
 import driveRoutes from './routes/driveRoutes.js';
 import dashboardRoutes from './routes/dashboardRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/students', studentRoutes);
 app.use('/drives', driveRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
