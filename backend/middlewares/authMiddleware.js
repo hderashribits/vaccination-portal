@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-const JWT_SECRET = 'your_secret_key';
+dotenv.config();  // Load environment variables from .env
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authenticateAdmin = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -19,6 +22,9 @@ export const authenticateAdmin = (req, res, next) => {
     req.user = decoded; // Add user info to request object
     next();
   } catch (err) {
+    if (err.name === 'TokenExpiredError') {
+      return res.status(401).json({ error: 'Unauthorized: Token expired' });
+    }
     return res.status(401).json({ error: 'Unauthorized: Invalid token' });
   }
 };

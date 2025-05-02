@@ -2,27 +2,18 @@
 import mongoose from 'mongoose';
 
 const driveSchema = new mongoose.Schema({
-  vaccineName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  date: {
-    type: Date,
-    required: true,
-  },
-  availableDoses: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
+  vaccineName: { type: String, required: true },
+  date: { type: Date, required: true },
+  availableDoses: { type: Number, required: true },
   applicableClasses: {
-    type: [String], // e.g., ["Grade 5", "Grade 6"]
+    type: [String],
     required: true,
-  },
-  expired: {
-    type: Boolean,
-    default: false,
+    validate: {
+      validator: function (val) {
+        return Array.isArray(val) && val.length > 0;
+      },
+      message: 'At least one applicable class is required',
+    },
   },
 }, { timestamps: true });
 
