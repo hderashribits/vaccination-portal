@@ -1,4 +1,5 @@
 import express from 'express';
+import { authenticateAdmin } from '../middlewares/authMiddleware.js';
 import {
   createStudent,
   getAllStudents,
@@ -10,18 +11,18 @@ import {
 const router = express.Router();
 
 // CREATE
-router.post('/', createStudent);
+router.post('/', authenticateAdmin,  createStudent);
 
 // READ ALL
-router.get('/', getAllStudents);
+router.get('/', authenticateAdmin,  getAllStudents);
 
 // READ ONE
-router.get('/:rollNo', getStudentById);
+router.get('/:rollNo', authenticateAdmin,  getStudentById);
 
 // UPDATE
-router.put('/:rollNo', updateStudent);
+router.put('/:rollNo', authenticateAdmin,  updateStudent);
 
 // DELETE
-router.delete('/:rollNo', deleteStudent);
+router.delete('/:rollNo', authenticateAdmin,  deleteStudent);
 
 export default router;

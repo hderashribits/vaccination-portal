@@ -31,7 +31,7 @@ export const getDashboardStats = async (req, res) => {
       },
       upcomingDrives,
       navigation: {
-        manageStudents: '/students',
+        manageStudents: '/api/students',
         manageDrives: '/drives',
         viewReports: '/reports'
       },

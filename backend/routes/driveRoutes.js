@@ -10,9 +10,9 @@ import {
 
 const router = express.Router();
 
-router.post('/', createDrive);
-router.get('/', getAllDrives);
-router.put('/:id', updateDrive);
+router.post('/', authenticateAdmin, createDrive);
+router.get('/', authenticateAdmin, getAllDrives);
+router.put('/:id', authenticateAdmin, updateDrive);
 router.delete('/', authenticateAdmin, deleteDrive);
 
 export default router;
