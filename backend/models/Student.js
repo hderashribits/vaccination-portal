@@ -9,11 +9,19 @@ const studentSchema = new mongoose.Schema({
   dob: { type: Date, required: true },
   address: String,
   phone: String,
-  email: { type: String},
+  email: { type: String },
   parentName: String,
   parentContact: String,
   vaccinated: { type: Boolean, default: false },
   vaccinationDate: Date
 }, { timestamps: true });
+
+// Normalize rollNo before saving (to prevent case mismatch)
+studentSchema.pre('save', function (next) {
+  if (this.rollNo) {
+    this.rollNo = this.rollNo.trim().toUpperCase();
+  }
+  next();
+});
 
 export default mongoose.model('Student', studentSchema);
