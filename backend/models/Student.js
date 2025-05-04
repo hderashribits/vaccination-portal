@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// Schema for the Student model
 const studentSchema = new mongoose.Schema({
   rollNo: { type: String, required: true, unique: true },
   name: { type: String, required: true },
@@ -16,7 +17,7 @@ const studentSchema = new mongoose.Schema({
   vaccinationDate: Date
 }, { timestamps: true });
 
-// Normalize rollNo before saving (to prevent case mismatch)
+// rollNo normalization
 studentSchema.pre('save', function (next) {
   if (this.rollNo) {
     this.rollNo = this.rollNo.trim().toUpperCase();

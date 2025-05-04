@@ -1,5 +1,7 @@
-import mongoose from 'mongoose';  // Import mongoose
+// MongoDB connection import
+import mongoose from 'mongoose';
 
+// Function to connect to MongoDB
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
@@ -9,7 +11,7 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    process.exit(1);  // Exit if there's a connection error
+    process.exit(1);  
   }
 };
 

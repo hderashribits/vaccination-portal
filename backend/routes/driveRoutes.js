@@ -10,6 +10,7 @@ import {
 
 const router = express.Router();
 
+// POST, PUT/PATCH, GET, DELETE route for Drive operations
 router.post('/', authenticateAdmin, createDrive);
 router.get('/', authenticateAdmin, getAllDrives);
 router.put('/:id', authenticateAdmin, updateDrive);

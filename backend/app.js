@@ -22,11 +22,10 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     console.error('MongoDB connection error:', err.message);
-    process.exit(1); // Exit process if connection fails
+    process.exit(1);
   }
 };
 
-// Call the connection function
 connectDB();
 
 const app = express();

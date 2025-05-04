@@ -2,12 +2,13 @@ import Student from '../models/Student.js';
 import csv from 'csv-parser';
 import fs from 'fs';
 
-// Utility function to strip unwanted Unicode characters (like BOM)
+// strip unwanted Unicode characters
 const stripUnicode = (str) => {
   if (!str) return '';
   return str.replace(/^\uFEFF/, '').trim();
 };
 
+// CSV upload handler
 export const handleCSVUpload = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'CSV file is required' });
@@ -21,6 +22,7 @@ export const handleCSVUpload = async (req, res) => {
   const deleted = [];
   const fetched = [];
 
+  // CSV parsing
   fs.createReadStream(req.file.path)
     .pipe(csv())
     .on('data', (data) => results.push(data))
@@ -42,7 +44,9 @@ export const handleCSVUpload = async (req, res) => {
           vaccinated: row.vaccinated?.toLowerCase() === 'true'
         };
 
+        // HTTP method handling
         try {
+          // post method
           if (method === 'POST') {
             const existing = await Student.findOne({ rollNo });
             if (existing) {
@@ -53,7 +57,9 @@ export const handleCSVUpload = async (req, res) => {
               await newStudent.save();
               created.push(rollNo);
             }
-          } else if (method === 'PUT' || method === 'PATCH') {
+          } 
+          // put method
+          else if (method === 'PUT' || method === 'PATCH') {
             const existing = await Student.findOne({ rollNo });
             if (existing) {
               await Student.updateOne({ rollNo }, cleanRow);
@@ -61,14 +67,18 @@ export const handleCSVUpload = async (req, res) => {
             } else {
               errors.push({ row, error: 'RollNo not found for update' });
             }
-          } else if (method === 'DELETE') {
+          } 
+          // delete method
+          else if (method === 'DELETE') {
             const deletedStudent = await Student.findOneAndDelete({ rollNo });
             if (deletedStudent) {
               deleted.push(rollNo);
             } else {
               errors.push({ row, error: 'RollNo not found for deletion' });
             }
-          } else if (method === 'GET') {
+          } 
+          // get method
+          else if (method === 'GET') {
             const student = await Student.findOne({ rollNo });
             if (student) {
               fetched.push(student);

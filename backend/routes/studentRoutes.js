@@ -10,19 +10,11 @@ import {
 
 const router = express.Router();
 
-// CREATE
+// POST, PUT/PATCH, GET, DELETE route for Student operations
 router.post('/', authenticateAdmin,  createStudent);
-
-// READ ALL
 router.get('/', authenticateAdmin,  getAllStudents);
-
-// READ ONE
 router.get('/:rollNo', authenticateAdmin,  getStudentById);
-
-// UPDATE
 router.put('/:rollNo', authenticateAdmin,  updateStudent);
-
-// DELETE
 router.delete('/:rollNo', authenticateAdmin,  deleteStudent);
 
 export default router;

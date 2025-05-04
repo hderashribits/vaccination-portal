@@ -1,6 +1,6 @@
-// models/Drive.js
 import mongoose from 'mongoose';
 
+// Schema for the Drive model
 const driveSchema = new mongoose.Schema({
   vaccineName: { type: String, required: true },
   date: { type: Date, required: true },

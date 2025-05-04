@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mongo:
     image: mongo
@@ -5,32 +7,38 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db  # Named volume to persist database data
 
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - "5000:5000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"  # Dynamic port for backend
     env_file:
-      - .env 
+      - .env
     depends_on:
       - mongo
     environment:
       - MONGO_URI=mongodb://mongo:27017/vaccination_portal
     volumes:
-      - ./backend:/app
+      - ./backend:/app  # Mount local backend folder to container
     command: npm run dev
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        FRONTEND_INTERNAL_PORT: ${FRONTEND_INTERNAL_PORT}
     container_name: frontend
     ports:
-      - "5173:80"
+      - "${FRONTEND_PORT}:${FRONTEND_INTERNAL_PORT}"  # Dynamic port for frontend
+    env_file:
+      - .env
+    environment:
+      - FRONTEND_INTERNAL_PORT=${FRONTEND_INTERNAL_PORT}
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app  # Mount local frontend folder to container
 
 volumes:
-  mongo-data:
+  mongo-data: {}  # Named volume for MongoDB

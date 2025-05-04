@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-dotenv.config();  // Load environment variables from .env
-
+// Environment variables
+dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authenticateAdmin = (req, res, next) => {
@@ -19,7 +19,7 @@ export const authenticateAdmin = (req, res, next) => {
     if (decoded.role !== 'admin')
       return res.status(403).json({ error: 'Forbidden: Admins only' });
 
-    req.user = decoded; // Add user info to request object
+    req.user = decoded;
     next();
   } catch (err) {
     if (err.name === 'TokenExpiredError') {

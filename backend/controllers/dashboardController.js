@@ -14,10 +14,10 @@ export const getDashboardStats = async (req, res) => {
       ? ((vaccinatedCount / totalStudents) * 100).toFixed(2)
       : '0.00';
 
-    // Upcoming drives within next 30 days
+    // Upcoming drives within next 365 days
     const today = new Date();
     const next30 = new Date();
-    next30.setDate(today.getDate() + 30);
+    next30.setDate(today.getDate() + 365);
 
     const upcomingDrives = await Drive.find({
       date: { $gte: today, $lte: next30 }

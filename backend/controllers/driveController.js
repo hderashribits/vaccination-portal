@@ -88,17 +88,17 @@ export const updateDrive = async (req, res) => {
       return res.status(404).json({ error: 'Drive not found' });
     }
 
-    // Prevent updates to past drives
+    // Check if the drive date is in the past
     if (dayjs(drive.date).isBefore(dayjs(), 'day')) {
       return res.status(400).json({ error: 'Cannot update a past drive' });
     }
 
-    // Check available doses before updating
+    //  Validate newData fields
     if (newData.availableDoses !== undefined && newData.availableDoses < 0) {
       return res.status(400).json({ error: 'Available doses cannot be negative' });
     }
 
-    // Update allowed fields only
+    // Update drive fields
     if (newData.vaccineName !== undefined) drive.vaccineName = newData.vaccineName;
     if (newData.date !== undefined) drive.date = newData.date;
     if (newData.availableDoses !== undefined) drive.availableDoses = newData.availableDoses;
