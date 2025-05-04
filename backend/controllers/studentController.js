@@ -41,9 +41,9 @@ export const getStudentById = async (req, res) => {
 export const updateStudent = async (req, res) => {
   try {
     const student = await Student.findOneAndUpdate(
-      { rollNo: req.params.rollNo },   // filter
-      req.body,                        // update fields
-      { new: true, runValidators: true } // options
+      { rollNo: req.params.rollNo },   
+      req.body,                        
+      { new: true, runValidators: true } 
     );
     if (!student) {
       return res.status(404).json({ error: 'Student not found' });

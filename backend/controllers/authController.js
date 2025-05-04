@@ -2,11 +2,13 @@ import dotenv from 'dotenv';
 dotenv.config(); 
 import jwt from 'jsonwebtoken';
 
+// hardcoded admin credentials
 const ADMIN_EMAIL = 'admin@school.com';
 const ADMIN_PASSWORD = 'admin123';
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION = process.env.JWT_EXPIRATION || '2h';
 
+// Login function to authenticate admin users
 export const login = (req, res) => {
   const { email, password } = req.body;
 

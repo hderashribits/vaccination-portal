@@ -5,7 +5,7 @@ import { authenticateAdmin } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// POST, PUT/PATCH, GET, DELETE for CSV upload operations
+// POST, PUT/PATCH, GET, DELETE route for CSV upload operations
 router.post('/csv-upload', authenticateAdmin, upload.single('file'), handleCSVUpload);
 router.put('/csv-upload', authenticateAdmin, upload.single('file'), handleCSVUpload);
 router.patch('/csv-upload', authenticateAdmin, upload.single('file'), handleCSVUpload);

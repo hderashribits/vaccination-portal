@@ -4,6 +4,13 @@ FROM node:20
 # Set working directory
 WORKDIR /app
 
+# Accept BACKEND_PORT as a build-time argument
+ARG BACKEND_PORT
+
+# Set BACKEND_PORT as an environment variable at runtime
+ENV BACKEND_PORT=${BACKEND_PORT}
+
+
 # Copy package.json and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
@@ -12,7 +19,7 @@ RUN npm install
 COPY . .
 
 # Expose port
-EXPOSE 5000
+EXPOSE ${BACKEND_PORT}
 
 # Command to run
 CMD ["npm", "run", "dev"]
