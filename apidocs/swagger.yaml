@@ -1,0 +1,282 @@
+openapi: 3.0.3
+info:
+  title: Vaccination Management API
+  version: 1.0.0
+  description: API for managing student vaccinations and drives via CSV uploads and direct CRUD operations.
+servers:
+  - url: /api
+
+paths:
+
+  /csv-upload:
+    post:
+      summary: Upload a CSV to create or update student records
+      tags: [CSV]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            example:
+              file: students.csv
+      responses:
+        '200':
+          description: CSV processed successfully
+          content:
+            application/json:
+              example:
+                message: CSV processed
+                summary:
+                  created: 3
+                  updated: 1
+                  deleted: 0
+                  fetched: 0
+                  errors: 0
+                details:
+                  created: ["S101", "S102", "S103"]
+                  updated: ["S100"]
+                  deleted: []
+                  fetched: []
+                  errors: []
+        '400':
+          description: Missing file
+          content:
+            application/json:
+              example:
+                error: CSV file is required
+
+    put:
+      summary: Upload a CSV to update student records
+      tags: [CSV]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: CSV processed
+          content:
+            application/json:
+              example:
+                summary:
+                  updated: 2
+
+    get:
+      summary: Upload a CSV to fetch matching students
+      tags: [CSV]
+      responses:
+        '200':
+          description: Students fetched
+          content:
+            application/json:
+              example:
+                fetched:
+                  - rollNo: S101
+                    name: Jane Doe
+                    standard: "10"
+                    section: A
+
+    delete:
+      summary: Upload a CSV to delete student records
+      tags: [CSV]
+      responses:
+        '200':
+          description: Records deleted
+          content:
+            application/json:
+              example:
+                deleted: ["S103"]
+
+  /students:
+    post:
+      summary: Create a new student
+      tags: [Student]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              rollNo: S100
+              name: John Doe
+              standard: "10"
+              section: A
+              gender: Male
+              dob: 2005-09-01
+              vaccinated: true
+      responses:
+        '201':
+          description: Student created
+          content:
+            application/json:
+              example:
+                rollNo: S100
+                name: John Doe
+
+    get:
+      summary: Get all students
+      tags: [Student]
+      responses:
+        '200':
+          description: List of students
+          content:
+            application/json:
+              example:
+                - rollNo: S100
+                  name: John Doe
+
+  /students/{rollNo}:
+    get:
+      summary: Get a student by roll number
+      tags: [Student]
+      parameters:
+        - in: path
+          name: rollNo
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A student
+          content:
+            application/json:
+              example:
+                rollNo: S100
+                name: John Doe
+
+    put:
+      summary: Update a student by roll number
+      tags: [Student]
+      parameters:
+        - in: path
+          name: rollNo
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Johnny Doe
+      responses:
+        '200':
+          description: Student updated
+          content:
+            application/json:
+              example:
+                name: Johnny Doe
+
+    delete:
+      summary: Delete a student by roll number
+      tags: [Student]
+      parameters:
+        - in: path
+          name: rollNo
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Student deleted
+
+  /dashboard:
+    get:
+      summary: Get dashboard statistics
+      tags: [Dashboard]
+      responses:
+        '200':
+          description: Dashboard data
+          content:
+            application/json:
+              example:
+                students:
+                  total: 100
+                  vaccinated: 80
+                  vaccinatedPercentage: "80.00"
+                upcomingDrives:
+                  - vaccineName: Polio
+                    date: 2025-06-01
+                navigation:
+                  manageStudents: /api/students
+
+  /drives:
+    post:
+      summary: Create a new drive
+      tags: [Drive]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              vaccineName: Polio
+              date: 2025-06-01
+              availableDoses: 100
+              applicableClasses: ["10", "12"]
+      responses:
+        '201':
+          description: Drive created
+          content:
+            application/json:
+              example:
+                vaccineName: Polio
+
+    get:
+      summary: Get all drives
+      tags: [Drive]
+      responses:
+        '200':
+          description: List of drives
+          content:
+            application/json:
+              example:
+                - vaccineName: Polio
+                  date: 2025-06-01
+
+    delete:
+      summary: Delete a drive
+      tags: [Drive]
+      responses:
+        '200':
+          description: Drive deleted
+          content:
+            application/json:
+              example:
+                message: Drive deleted successfully
+
+  /drives/{id}:
+    put:
+      summary: Update a drive by ID
+      tags: [Drive]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              newData:
+                availableDoses: 120
+      responses:
+        '200':
+          description: Drive updated
+          content:
+            application/json:
+              example:
+                message: Drive updated successfully
+                drive:
+                  availableDoses: 120
