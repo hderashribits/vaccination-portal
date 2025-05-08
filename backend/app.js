@@ -36,8 +36,8 @@ app.use(express.json());
 
 // Define Routes
 app.use('/auth', authRoutes);
-app.use('/dashboard', dashboardRoutes);
-app.use('/drives', driveRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/drives', driveRoutes);
 app.use('/api', csvUploadRoutes);
 app.use('/api/students', studentRoutes);
 
