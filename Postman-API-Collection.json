@@ -1,0 +1,494 @@
+{
+	"info": {
+		"_postman_id": "d2506050-e1bd-4217-8500-4486860cfe08",
+		"name": "Vaccination Portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16533163"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDYyNzg2NjIsImV4cCI6MTc0NjI4MjI2Mn0.6x1VB12nioQ9eSC22bwzZCkz1pN63o_M7XK0x6abb9k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@school.com\",\n    \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get dashboard stats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/dashboard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add students",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rollNo\": \"1012\",\n  \"name\": \"John Doe\",\n  \"standard\": \"10\",\n  \"section\": \"A\",\n  \"gender\": \"Male\",\n  \"dob\": \"2005-06-15\",\n  \"address\": \"123 Elm St.\",\n  \"phone\": \"123-456-7890\",\n  \"email\": \"john.doe@example.com\",\n  \"parentName\": \"Jane Doe\",\n  \"parentContact\": \"987-654-3210\",\n  \"vaccinated\": true,\n  \"vaccineName\": \"COVID-19 Vaccine\",\n  \"vaccinationDate\": \"2024-04-20\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit student data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rollNo\": \"1012\",\n  \"name\": \"John Doe\",\n  \"standard\": \"11\",\n  \"section\": \"A\",\n  \"gender\": \"Male\",\n  \"dob\": \"2005-06-15\",\n  \"address\": \"123 Elm St.\",\n  \"phone\": \"123-456-7890\",\n  \"email\": \"john.doe@example.com\",\n  \"parentName\": \"Jane Doe\",\n  \"parentContact\": \"987-654-3210\",\n  \"vaccinated\": true,\n  \"vaccineName\": \"COVID-19 Vaccine\",\n  \"vaccinationDate\": \"2024-04-20\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/students/1012",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"students",
+						"1012"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all student data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a student data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/students/1012",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"students",
+						"1012"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CSV Upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/rajitaroy/vaccination-portal/student.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/csv-upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"csv-upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create vaccination drive",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vaccineName\": \"COVID-19 Vaccine\",\n  \"date\": \"2025-07-07\",\n  \"availableDoses\": 100,\n  \"applicableClasses\": [\"9\", \"10\"]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/drives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"drives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update vaccination drive",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vaccineName\": \"COVID-19 Vaccine\",\n  \"date\": \"2025-07-07T00:00:00.000Z\",\n  \"newData\": {\n    \"availableDoses\": 150,\n    \"applicableClasses\": [\"Class 5\"]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/drives/681e11871bd91803ee0760c9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"drives",
+						"681e11871bd91803ee0760c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all vaccination drives",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/drives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"drives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a vaccination drive",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vaccineName\": \"covid3\",\n    \"date\": \"2025-05-31T00:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/drives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"drives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all vaccine names",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNjaG9vbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY4MDAxNzksImV4cCI6MTc0NjgwMzc3OX0.BFM9Xc9EDlNyOSQolBJosYOqdd6gbwSysdCYZIMGf3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rollNo\": \"A10667\",\n  \"name\": \"Riya Sharma\",\n  \"standard\": \"5th\",\n  \"section\": \"A\",\n  \"gender\": \"Female\",\n  \"dob\": \"2014-08-12\",\n  \"address\": \"123 Green Valley, Delhi\",\n  \"phone\": \"9876543210\",\n  \"email\": \"riya.sharma@example.com\",\n  \"parentName\": \"Suresh Sharma\",\n  \"parentContact\": \"9876543211\",\n  \"vaccinated\": true,\n  \"vaccineName\": \"covid2\",\n  \"vaccinationDate\": \"2025-05-08\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/drives/vaccinationNames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"drives",
+						"vaccinationNames"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
