@@ -70,6 +70,16 @@ export const getAllDrives = async (req, res) => {
   }
 };
 
+export const getAllVaccineNames = async (req, res) => {
+  try {
+    const vaccineNames = await Drive.distinct('vaccineName');
+    res.status(200).json(vaccineNames);
+  } catch (err) {
+    console.error('Error fetching vaccine names:', err.message);
+    res.status(500).json({ error: 'Server error: ' + err.message });
+  }
+};
+
 // UPDATE Drive by ID or vaccineName/date combo
 export const updateDrive = async (req, res) => {
   try {
