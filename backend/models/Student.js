@@ -14,7 +14,14 @@ const studentSchema = new mongoose.Schema({
   parentName: String,
   parentContact: String,
   vaccinated: { type: Boolean, default: false },
-  vaccinationDate: Date
+  vaccineName: {
+    type: String,
+    required: [function () { return this.vaccinated === true }, 'Vaccine name is required when vaccinated is true'],
+  },
+  vaccinationDate: {
+    type: Date,
+    required: [function () { return this.vaccinated === true }, 'Vaccination date is required when vaccinated is true'],
+  }
 }, { timestamps: true });
 
 // rollNo normalization

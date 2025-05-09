@@ -13,15 +13,38 @@ export const createStudent = async (req, res) => {
 };
 
 // READ ALL
+// READ ALL with optional filters
 export const getAllStudents = async (req, res) => {
   try {
-    const students = await Student.find();
+    const { vaccineName, vaccinated, startDate, endDate } = req.query;
+
+    const query = {};
+
+    // Filter by vaccineName (case-insensitive)
+    if (vaccineName) {
+      query.vaccineName = new RegExp(`^${vaccineName}$`, 'i');
+    }
+
+    // Filter by vaccinated status (string 'true'/'false' from query)
+    if (vaccinated !== undefined) {
+      query.vaccinated = vaccinated === 'true';
+    }
+
+    // Filter by vaccination date range
+    if (startDate || endDate) {
+      query.vaccinationDate = {};
+      if (startDate) query.vaccinationDate.$gte = new Date(startDate);
+      if (endDate) query.vaccinationDate.$lte = new Date(endDate);
+    }
+
+    const students = await Student.find(query);
     res.status(200).json(students);
   } catch (err) {
     console.error('Error fetching students:', err.message);
     res.status(500).json({ error: 'Server error: ' + err.message });
   }
 };
+
 
 // READ ONE
 export const getStudentById = async (req, res) => {
