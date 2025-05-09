@@ -24,6 +24,7 @@ MONGO_URI=mongodb://mongo:27017/vaccination_db
 JWT_SECRET=hardcoded_or_mock_secret
 JWT_EXPIRATION=1h
 ```
+### Postman collection file - Postman-API-Collection.json
 ### View UI
 ```console
 cd vaccination-portal/frontend
