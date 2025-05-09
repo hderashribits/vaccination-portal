@@ -1,8 +1,10 @@
 // axiosInstance.js
 import axios from 'axios';
 
+const PORT = import.meta.env.VITE_BACKEND_PORT || 5001;
+
 const instance = axios.create({
-  baseURL: 'http://localhost:5001',
+  baseURL: `http://localhost:${PORT}`,
 });
 
 // Don't attach token to login or public routes
