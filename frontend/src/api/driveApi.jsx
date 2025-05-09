@@ -21,3 +21,8 @@ export const deleteDrive = async (drive) => {
   const res = await axios.delete('/api/drives', { data: { vaccineName, date } });
   return res.data;
 };
+
+export const getVaccinationNames = async () => {
+  const res = await axios.get('/api/drives/vaccinationNames');
+  return res.data;
+};
