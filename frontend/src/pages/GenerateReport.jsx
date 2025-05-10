@@ -1,4 +1,3 @@
-// src/pages/GenerateReport.jsx
 import React, { useEffect, useState } from 'react';
 import {
   Box, Button, TextField, MenuItem, Typography, Paper, TableContainer,

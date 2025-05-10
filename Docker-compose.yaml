@@ -7,13 +7,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db  # Named volume to persist database data
-
+      - mongo-data:/data/db
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"  # Dynamic port for backend
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     env_file:
       - .env
     depends_on:
@@ -21,7 +20,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/vaccination_portal
     volumes:
-      - ./backend:/app  # Mount local backend folder to container
+      - ./backend:/app
     command: npm run dev
 
   frontend:
@@ -32,13 +31,13 @@ services:
         FRONTEND_INTERNAL_PORT: ${FRONTEND_INTERNAL_PORT}
     container_name: frontend
     ports:
-      - "${FRONTEND_PORT}:${FRONTEND_INTERNAL_PORT}"  # Dynamic port for frontend
+      - "${FRONTEND_PORT}:${FRONTEND_INTERNAL_PORT}"
     env_file:
       - .env
     environment:
       - FRONTEND_INTERNAL_PORT=${FRONTEND_INTERNAL_PORT}
     volumes:
-      - ./frontend:/app  # Mount local frontend folder to container
+      - ./frontend:/app
 
 volumes:
-  mongo-data: {}  # Named volume for MongoDB
+  mongo-data: {}

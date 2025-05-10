@@ -1,4 +1,3 @@
-// src/components/Table.js
 import React from 'react';
 
 function Table({ columns, data }) {

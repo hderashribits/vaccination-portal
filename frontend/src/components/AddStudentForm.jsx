@@ -1,4 +1,3 @@
-// src/components/AddStudentForm.js
 import React, { useState } from 'react';
 import { addStudent } from '../api/studentApi';
 

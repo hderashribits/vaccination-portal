@@ -3,7 +3,6 @@ import { getDashboardStats } from "../api/dashboardApi";
 import { Box, Grid, Card, CardContent, Typography, CircularProgress } from "@mui/material";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
-// Define some colors for the chart
 const COLORS = ["#4CAF50", "#f44336"];
 
 const Dashboard = () => {
@@ -55,12 +54,12 @@ const Dashboard = () => {
                   data={vaccinationData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={50}  // Increased inner radius to create a hole (donut effect)
-                  outerRadius={70}  // Adjust the outer radius for the donut size
+                  innerRadius={50}
+                  outerRadius={70}
                   fill="#8884d8"
                   paddingAngle={5}
                   dataKey="value"
-                  animationDuration={1000} // Adding animation
+                  animationDuration={1000}
                 >
                   {vaccinationData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

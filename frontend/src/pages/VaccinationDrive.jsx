@@ -51,7 +51,6 @@ function VaccinationDrive() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Define the common payload elements
     const commonPayload = {
       vaccineName: formData.vaccineName,
       date: formData.date,
@@ -61,20 +60,18 @@ function VaccinationDrive() {
   
     try {
       if (isEditing) {
-        // For update, we send the ID and the new data inside 'newData'
         const payload = {
-          id: editingId, // ID for the drive we're editing
+          id: editingId,
           newData: {
             availableDoses: commonPayload.availableDoses,
             applicableClasses: commonPayload.applicableClasses,
           },
         };
   
-        await updateDrive(editingId, payload); // Call update API
+        await updateDrive(editingId, payload);
         toast.success('Drive updated');
       } else {
-        // For create, we send the full commonPayload
-        await createDrive(commonPayload); // Call create API
+        await createDrive(commonPayload);
         toast.success('Drive created');
       }
   
@@ -96,9 +93,9 @@ function VaccinationDrive() {
   const handleEdit = (drive) => {
     setFormData({
       vaccineName: drive.vaccineName,
-      date: drive.date.split('T')[0],  // Only date part (YYYY-MM-DD)
+      date: drive.date.split('T')[0],
       availableDoses: drive.availableDoses.toString(),
-      applicableClasses: drive.applicableClasses,  // Keep the classes as they are selected
+      applicableClasses: drive.applicableClasses,
     });
     setIsEditing(true);
     setEditingId(drive._id);
@@ -108,7 +105,7 @@ function VaccinationDrive() {
     try {
       await deleteDrive(drive);
       toast.success('Drive deleted successfully');
-      fetchDrives(); // Refresh the list after deletion
+      fetchDrives();
     } catch (err) {
       const msg = err.response?.data?.error || 'Something went wrong';
       toast.error(msg);

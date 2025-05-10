@@ -1,4 +1,3 @@
-// src/components/Button.js
 import React from 'react';
 
 function Button({ label, onClick, className }) {

@@ -19,7 +19,7 @@ function Navbar() {
                 marginLeft: 2,
                 fontWeight: 500,
                 '&:hover': {
-                  backgroundColor: '#4CAF50', // Hover effect
+                  backgroundColor: '#4CAF50',
                   borderRadius: '4px',
                 },
               }}
@@ -80,7 +80,7 @@ function Navbar() {
                 marginLeft: 2,
                 fontWeight: 500,
                 '&:hover': {
-                  backgroundColor: '#f44336', // Red hover effect for logout
+                  backgroundColor: '#f44336',
                   borderRadius: '4px',
                 },
               }}

@@ -1,4 +1,3 @@
-// src/pages/ManageStudents.jsx
 import React, { useState, useEffect, useCallback} from 'react';
 import {
   Container, Typography, Button, TextField, Dialog, DialogTitle,
@@ -93,7 +92,7 @@ function ManageStudents() {
           open: false, // Close the dialog
           rollNo: ''
         }));
-      }, 200); // Adjust the timeout if necessary
+      }, 200);
     }
   }, [confirmDelete.rollNo]);  
   

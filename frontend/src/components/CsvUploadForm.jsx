@@ -1,4 +1,3 @@
-// src/components/CSVUploadForm.js
 import React, { useState } from 'react';
 import { uploadStudentsCSV } from '../api/studentApi';
 
